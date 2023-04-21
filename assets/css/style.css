@@ -44,24 +44,25 @@ html, body {
   .card {
     height: 375px;
   }
-
+  
   .card-img-top {
     height: 300px;
     object-fit: cover;
   }
   
-
   .card {
     margin: 20px;
   }
-
-  footer{
+  
+  footer {
     height: 10vh;
     margin-top: 10px;
   }
-
+  
   .photo {
     width: calc(33.33% - 20px);
+    max-width: 300px;
+    height: 300px; /* set a fixed height */
     margin: 10px;
     display: inline-block;
     position: relative;
@@ -69,7 +70,8 @@ html, body {
   
   .photo img {
     width: 100%;
-    height: auto;
+    height: 100%; /* set the height to 100% to fill the container */
+    object-fit: cover; /* make sure the image fills the container without stretching */
   }
   
   .photo .caption {
@@ -90,8 +92,20 @@ html, body {
     opacity: 1;
   }
   
-  .no-results{
+  .no-results {
     font-size: 1.5rem;
     color: rgb(241, 97, 126);
     text-align: center;
   }
+  
+  #response {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  div#photos{
+    margin-left: 6rem;
+  }
+  

@@ -21,8 +21,10 @@ $(document).ready(function() {
                     photoHTML = '<div class="no-results">No images found matching your search </div>';
                 }
                 $('#photos').html(photoHTML);
-            }
-            ,
+                $('html, body').animate({
+                    scrollTop: $('#photos').offset().top
+                }, 'slow');
+            },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
             }
@@ -34,49 +36,34 @@ $(document).ready(function() {
 
 
 //  Upload -----------------------------------------------------------------
-$('#upload-form').submit(function(e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-
-    // Make AJAX request to upload.php
-    $.ajax({
-        url: 'assets/php/photo_upload.php',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-            // Clear form
-            $('#upload-form')[0].reset();
-
-            // Display uploaded images
-            var images = JSON.parse(data);
-            var html = '';
-            for (var i = 0; i < images.length; i++) {
-                if (i % 3 == 0) {
-                    html += '<div class="row">';
-                }
-                html += '<div class="col-md-4 mb-3">';
-                html += '<div class="card">';
-                html += '<img src="'+images[i].url+'" class="card-img-top" alt="'+images[i].name+'">';
-                html += '<div class="card-body">';
-                html += '<h5 class="card-title">'+images[i].name+'</h5>';
-                html += '</div>';
-                html += '</div>';
-                html += '</div>';
-                if ((i + 1) % 3 == 0) {
-                    html += '</div>';
-                }
+$(document).ready(function() {
+    $('#uploadForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'assets/php/photo_upload.php',
+            type: 'POST',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response) {
+                var img = $('<img>').attr('src', 'assets/php/' + response);
+                img.addClass('photo');
+                $('#response').append(img);
+                $('#title').val('');
+                $('#image').val('');
+            },
+            
+            error: function(jqXHR, status, error) {
+                console.log(status + ": " + error);
             }
-            $('#photos').html(html);
-        },
-        error: function() {
-            alert('Error uploading file.');
-        }
+        });
     });
 });
 
 
 
-  
+
+
+
   

@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Dursley <span class="photo">Photography</span></a>
+    <a class="navbar-brand text-light" href="#">Dursley <span class="photo">Photography</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -81,17 +81,27 @@ The community of Dursley Photography is a diverse group of individuals who share
 </section>
 
 
-    <!-- Images ------------------------------------------->
-    <div id="photos"></div>
+   <!-- Upload -->
+<form id="uploadForm" method="post" enctype="multipart/form-data" class="my-4">
+  <div class="form-group">
+    <label for="image">Choose Image:</label>
+    <input type="file" class="form-control-file" name="image" id="image">
+  </div>
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
+  </div>
+  <button type="submit" class="btn btn-primary mt-2 mb-3">Upload</button>
+</form>
 
+<div id="response"></div>
 
-    <!-- Upload ------------------------------------------->
-    <form id="myForm" action="assets/php/photo_upload.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file" id="file">
-    <button type="submit">Upload</button>
-    </form>
-
+<!-- Images -->
 <div id="photos"></div>
+
+
+   
+  
 
 
 
